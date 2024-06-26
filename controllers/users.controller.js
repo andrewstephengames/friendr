@@ -1,14 +1,13 @@
-usersService = require('../services/users.service');
+const usersService = require('../services/users.service');
 
 const usersController = {
-    createUser: (userObj) => {
-        console.log('Reached user controller');
-        console.log (userObj);
-        usersService.createUser(userObj);
+    createUser: (userId) => {
+        console.log('[INFO]: Reached user controller');
+        usersService.createUser(userId);
     },
-    deleteUser: (userObj) => {
-        console.log ('Deleted user: ' + userObj);
-        usersService.deleteUser(userObj);
+    deleteUser: (userId) => {
+        console.log('[INFO]: Reached user controller');
+        usersService.deleteUser(userId);
     }
 };
 
