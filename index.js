@@ -5,7 +5,7 @@ const usersRouter = require ('./routers/users.router');
 const app = express();
 app.use (express.json());
 
-const PORT = 80;
+const PORT = 3000;
 
 app.get('/', (req, res) => {
   res.send('Hello world');
