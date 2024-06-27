@@ -29,23 +29,23 @@ router.get('/', (req, res) => {
 });
 
 router.post('/:id', (req, res) => {
-    const requestedUID = req.params.id;
-    console.log (`[INFO]: User id: ${requestedUID}`);
-    if (requestedUID !== undefined) {
-	    usersController.createUser(requestedUID);
+    const userObj = req.body;
+    console.log (`[INFO]: User id: ${userObj.id}`);
+    if (userObj !== undefined) {
+	    usersController.createUser(userObj);
 	    res.status(201).send(`
 	        <html>
 	            <head>
 	                <title>User created</title>
 	            </head>
 	            <body>
-	                <h1>User <em>${req.body.firstName} ${req.body.lastName}</em> has been created!</h1>
+	                <h1>User <em>${userObj.firstName} ${userObj.lastName}</em> has been created!</h1>
 	            </body>
 	        </html>
         `);
     } else {
         res.status(400).send();
-        console.log (`[ERROR]: could not create user with ${requestedUID}: invalid JSON`);
+        console.log (`[ERROR]: could not create user with ${userObj.id}: invalid JSON`);
         return;
     }
 });

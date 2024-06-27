@@ -18,8 +18,8 @@ app.use('/posts', postsRouter);
 
 app.listen(port, () => {
   console.log(`[INFO]: Server is running on port ${port}`);
-  mongoose.connect(`mongodb+srv://andrew:${secrets}@cluster0.4xlt9av.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0`).then(() => {
-    console.log ('[INFO]: Connected to MongoDB')
+  mongoose.connect(`mongodb+srv://andrew:${secrets}@cluster0.4xlt9av.mongodb.net/friendr?retryWrites=true&w=majority&appName=Cluster0`).then(() => {
+    console.log ('[INFO]: Connected to MongoDB');
   }).catch ((err) => {
     console.log (`[ERROR]: Unable to connect to the database: ${err}`)
   })
