@@ -1,13 +1,13 @@
 const postsService = require('../services/posts.service');
 
 const postsController = {
-    createPost: (postId) => {
+    createPost: (postObj) => {
         console.log('[INFO]: Reached post controller');
-        postsService.createPost(postId);
+        postsService.createPost(postObj);
     },
-    deletePost: (postId) => {
+    deletePost: (postObj) => {
         console.log('[INFO]: Reached post controller');
-        postsService.deletePost(postId);
+        postsService.deletePost(postObj);
     }
 };
 

@@ -1,11 +1,11 @@
 const mongoose = require ('mongoose');
 const UserModel = mongoose.model ('User',
     {
-        id: String,
+        id: Number,
         firstName: String,
         lastName: String,
         username: String,
-        birthYear: String
+        birthYear: Number
     });
 
 // create a mongoose model for User entity
