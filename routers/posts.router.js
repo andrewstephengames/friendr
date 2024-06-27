@@ -32,7 +32,7 @@ router.get('/', (req, res) => {
 router.post('/:id', (req, res) => {
     const requestedPID = req.params.id;
     if (requestedPID !== undefined) {
-        console.log (`[INFO]: Post with id ${requestedPID} created succesfully`);
+        console.log (`[INFO]: Post with ${requestedPID} created succesfully`);
         postsController.createPost(requestedPID);
 		res.status(201).send(`
 			<html>
@@ -40,7 +40,11 @@ router.post('/:id', (req, res) => {
 			        <title>Post creation</title>
 			    </head>
 			    <body>
-			        <h1>Post with ${requestedPID} created succesfully</h1>
+			        <h1>Post by ${req.body.user.firstName} ${req.body.user.lastName} with ${requestedPID} created succesfully</h1>
+			        <h1>Title:</h1>
+					<h2>${req.body.title}</h2>
+			        <h1>Description:</h1>
+					<h2>${req.body.description}</h2>
 			    </body>
 			</html>
 		`);

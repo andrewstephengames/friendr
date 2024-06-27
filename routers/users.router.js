@@ -45,7 +45,7 @@ router.post('/:id', (req, res) => {
         `);
     } else {
         res.status(400).send();
-        console.log (`[ERROR]: could not create user with id ${requestedUID}: invalid JSON`);
+        console.log (`[ERROR]: could not create user with ${requestedUID}: invalid JSON`);
         return;
     }
 });
