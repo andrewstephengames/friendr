@@ -31,7 +31,7 @@ router.get('/', (req, res) => {
 
 router.post('/:id', (req, res) => {
     const requestedPID = req.params.id;
-    if (requestedPID !== "") {
+    if (requestedPID !== undefined) {
         console.log (`[INFO]: Post with id ${requestedPID} created succesfully`);
         postsController.createPost(requestedPID);
 		res.status(201).send(`
@@ -40,12 +40,12 @@ router.post('/:id', (req, res) => {
 			        <title>Post creation</title>
 			    </head>
 			    <body>
-			        <h1>${requestedPID.body}</h1>
+			        <h1>Post with ${requestedPID} created succesfully</h1>
 			    </body>
 			</html>
 		`);
     } else {
-        console.log (`[ERROR]: Unable to create post with id ${requestedPID}: invalid JSON`)
+        console.log (`[ERROR]: Unable to create post with ${requestedPID}: invalid JSON`)
         res.status(400).send();
         return;
     }

@@ -29,7 +29,8 @@ router.get('/', (req, res) => {
 });
 
 router.post('/:id', (req, res) => {
-    const requestedUID = req.query.id;
+    const requestedUID = req.params.id;
+    console.log (`[INFO]: User id: ${requestedUID}`);
     if (requestedUID !== undefined) {
 	    usersController.createUser(requestedUID);
 	    res.status(201).send(`
