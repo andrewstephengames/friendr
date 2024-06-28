@@ -23,10 +23,26 @@ const usersController = {
         usersService.createUser(userToBeCreated);
         res.status(201).send(`[INFO]: User created successfully`);
     },
-    deleteUser: async (userObj) => {
+    updateUser: async (req, res) => {
+        console.log(`[INFO]: Reached PATCH user controller`);
+        const userToBeModified = req.body;
+        if (!userToBeModified ||
+            !userToBeModified.id ||
+            !userToBeModified?.firstName ||
+            !userToBeModified?.lastName ||
+            !userToBeModified?.userName) {
+            res.status(400).send(`[ERROR]: Invalid user object`);
+            return;
+        }
+        console.log (`[INFO]: Update user`);
+        usersService.updateUser(userToBeModified);
+        res.status(201).send(`[INFO]: User modified successfully`);
+    },
+    deleteUser: async (req, res) => {
         console.log('[INFO]: Reached user controller');
-        console.log (`[INFO]: Delete user: ${userObj}`);
-        usersService.deleteUser(userObj);
+        console.log (`[INFO]: Delete user: ${req.body}`);
+        usersService.deleteUser(req.body);
+        res.status(204).send(`[INFO]: User deleted succesfully`);
     }
 };
 

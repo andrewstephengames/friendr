@@ -8,6 +8,4 @@ const UserModel = mongoose.model ('User',
         birthYear: Number
     });
 
-// create a mongoose model for User entity
-
 module.exports = UserModel;
