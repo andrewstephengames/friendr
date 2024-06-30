@@ -6,10 +6,16 @@ const usersController = {
         const userId = req.params.id;
         console.log (`[INFO]: User: ${userId}`);
         const userObj = await usersService.getUserById(userId);
-        res.status(200).send(userObj);
+        console.log (`[INFO]: ${userObj}`);
+        if (!userObj) {
+            res.status (404).send(`User with ID ${userId} not found`);
+        } else {
+            console.log (`[INFO]: ${userObj}`);
+            res.status(200).send(userObj);
+        }
     },
     createUser: async (req, res) => {
-        console.log('[INFO]: Reached user controller');
+        console.log('[INFO]: Reached user creation controller');
         const userToBeCreated = req.body;
         if (!userToBeCreated ||
             !userToBeCreated.id ||
@@ -40,7 +46,7 @@ const usersController = {
     },
     deleteUser: async (req, res) => {
         console.log('[INFO]: Reached user controller');
-        console.log (`[INFO]: Delete user: ${req.body}`);
+        console.log (`[INFO]: Delete user`);
         usersService.deleteUser(req.body);
         res.status(204).send(`[INFO]: User deleted succesfully`);
     }

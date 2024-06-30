@@ -4,7 +4,7 @@ const UserModel = mongoose.model ('User',
         id: Number,
         firstName: String,
         lastName: String,
-        username: String,
+        userName: String,
         birthYear: Number
     });
 

@@ -6,21 +6,43 @@ const postsController = {
         const postId = req.params.id;
         console.log (`[INFO]: Post: ${postId}`);
         const postObj = await postsService.getPostById(postId);
-        res.status(200).send();
+        console.log (`[INFO]: ${postObj}`);
+        if (!postObj) {
+            res.status (404).send(`Post with ID ${postId} not found`);
+        } else {
+            console.log (`[INFO]: ${postObj}`);
+            res.status(200).send(postObj);
+        }
     },
     createPost: async (req, res) => {
-        console.log('[INFO]: Reached post controller');
+        console.log('[INFO]: Reached post creation controller');
         const postToBeCreated = req.body;
         if (!postToBeCreated ||
-            !postToBeCreated.id ||
-            !postToBeCreated?.description ||
-            !postToBeCreated?.author) {
+            !postToBeCreated?.postId ||
+            !postToBeCreated?.userId ||
+            !postToBeCreated?.title ||
+            !postToBeCreated?.description) {
             res.status(400).send(`[ERROR]: Invalid post object`);
             return;
         }
-        console.log (`[INFO]: Create post with ${postToBeCreated.id}`);
+        console.log (`[INFO]: Create post ${postToBeCreated.postId}`);
         postsService.createPost(postToBeCreated);
         res.status(201).send(`[INFO]: Post created successfully`);
+    },
+    updatePost: async (req, res) => {
+        console.log(`[INFO]: Reached PATCH post controller`);
+        const postToBeModified = req.body;
+        if (!postToBeModified ||
+            !postToBeModified?.postId ||
+            !postToBeModified?.userId ||
+            !postToBeModified?.title ||
+            !postToBeModified?.description) {
+            res.status(400).send(`[ERROR]: Invalid post object`);
+            return;
+        }
+        console.log (`[INFO]: Update post`);
+        postsService.updatePost(postToBeModified);
+        res.status(201).send(`[INFO]: Post updated successfully`);
     },
     deletePost: async (req, res) => {
         console.log('[INFO]: Reached post controller');
