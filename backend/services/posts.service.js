@@ -10,6 +10,10 @@ const postsService = {
 	        throw error;
         }
     },
+    getAllPosts: async () => {
+        const postObj = await PostModel.find();
+        return postObj;
+    },
     createPost: (postObj) => {
         console.log (`[INFO]: Reached post creation service`);
 	    const postToBeCreated = new PostModel (postObj);

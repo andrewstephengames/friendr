@@ -1,7 +1,7 @@
 const postsService = require('../services/posts.service');
 
 const postsController = {
-    getPost: async (req, res) => {
+    getOne: async (req, res) => {
         console.log('[INFO]: Reached GET post controller');
         const postId = req.params.id;
         console.log (`[INFO]: Post: ${postId}`);
@@ -13,6 +13,11 @@ const postsController = {
             console.log (`[INFO]: ${postObj}`);
             res.status(200).send(postObj);
         }
+    },
+    getAll: async (req, res) => {
+        console.log (`[INFO]: Reached get-all in post controller`);
+        const postObj = await postsService.getAllPosts();
+        res.status (200).send(postObj);
     },
     createPost: async (req, res) => {
         console.log('[INFO]: Reached post creation controller');
