@@ -26,7 +26,7 @@ const postsService = {
         console.log (`[INFO]: Reached PATCH post service`);
         PostModel.deleteOne({id: newPostObj.id});
         PostModel.updateOne(newPostObj).then(() => {
-            console.log (`[INFO] Post updated in the DB succesfully`);
+            console.log (`[INFO]: Post updated in the DB succesfully`);
         });
         console.log (`[INFO]: Updated post in post service`);
     },
