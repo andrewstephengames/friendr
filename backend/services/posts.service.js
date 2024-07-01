@@ -4,7 +4,6 @@ const postsService = {
 	    console.log(`[INFO]: Reached GET post service`);
 	    try {
 	        const postObj = await PostModel.findOne({ id: postId }, {});
-	        console.log(`[INFO]: Found post ${postId}`);
 	        return postObj;
 	    } catch (error) {
 	        console.error(`[ERROR]: Error fetching post ${postId}`, error);
@@ -21,13 +20,14 @@ const postsService = {
     },
     updatePost: (newPostObj) => {
         console.log (`[INFO]: Reached PATCH post service`);
+        PostModel.deleteOne({id: newPostObj.id});
         PostModel.updateOne(newPostObj).then(() => {
             console.log (`[INFO] Post updated in the DB succesfully`);
         });
         console.log (`[INFO]: Updated post in post service`);
     },
     deletePost: async (postObj) => {
-        await PostModel.deleteOne({ id: postObj.postId }).then(() => {
+        await PostModel.deleteOne({ id: postObj.id }).then(() => {
             console.log(`[INFO]: Post with id ${postObj.postId} has been removed`);
         });
     }

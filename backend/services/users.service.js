@@ -21,6 +21,7 @@ const usersService = {
     },
     updateUser: (newUserObj) => {
         console.log (`[INFO]: Reached PATCH user service`);
+        UserModel.deleteOne({id: newUserObj.id});
         UserModel.updateOne(newUserObj).then(() => {
             console.log (`[INFO] User updated in the DB succesfully`);
         });

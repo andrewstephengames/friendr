@@ -6,7 +6,7 @@ const postsController = {
         const postId = req.params.id;
         console.log (`[INFO]: Post: ${postId}`);
         const postObj = await postsService.getPostById(postId);
-        console.log (`[INFO]: ${postObj}`);
+        console.log (`[INFO]: ${JSON.stringify(postObj)}`);
         if (!postObj) {
             res.status (404).send(`Post with ID ${postId} not found`);
         } else {
@@ -18,14 +18,14 @@ const postsController = {
         console.log('[INFO]: Reached post creation controller');
         const postToBeCreated = req.body;
         if (!postToBeCreated ||
-            !postToBeCreated?.postId ||
+            !postToBeCreated?.id ||
             !postToBeCreated?.userId ||
             !postToBeCreated?.title ||
             !postToBeCreated?.description) {
             res.status(400).send(`[ERROR]: Invalid post object`);
             return;
         }
-        console.log (`[INFO]: Create post ${postToBeCreated.postId}`);
+        console.log (`[INFO]: Create post ${postToBeCreated.id}`);
         postsService.createPost(postToBeCreated);
         res.status(201).send(`[INFO]: Post created successfully`);
     },
@@ -33,7 +33,7 @@ const postsController = {
         console.log(`[INFO]: Reached PATCH post controller`);
         const postToBeModified = req.body;
         if (!postToBeModified ||
-            !postToBeModified?.postId ||
+            !postToBeModified?.id ||
             !postToBeModified?.userId ||
             !postToBeModified?.title ||
             !postToBeModified?.description) {
