@@ -47,7 +47,7 @@ const postsController = {
     deletePost: async (req, res) => {
         console.log('[INFO]: Reached post controller');
         console.log (`[INFO]: Delete post: ${req.body}`);
-        postsService.deletePost(req.body);
+        postsService.deletePost(req.params.id);
         res.status(204).send(`[INFO]: Post deleted succesfully`);
     }
 };

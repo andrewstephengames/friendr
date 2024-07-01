@@ -47,7 +47,7 @@ const usersController = {
     deleteUser: async (req, res) => {
         console.log('[INFO]: Reached user controller');
         console.log (`[INFO]: Delete user`);
-        usersService.deleteUser(req.body);
+        usersService.deleteUser(req.params.id);
         res.status(204).send(`[INFO]: User deleted succesfully`);
     }
 };

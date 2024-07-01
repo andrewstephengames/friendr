@@ -27,12 +27,8 @@ const usersService = {
         });
         console.log (`[INFO]: Updated user in user service`);
     },
-    deleteUser: async (userObj) => {
-        await UserModel.deleteOne ({ id: userObj.id }).then(() => {
-            console.log(`[INFO]: User with id ${userObj.id} has been removed`);
-        }).catch((err) => {
-            console.log (`[ERROR]: Could not remove user: ${err}`);
-        });
+    deleteUser: async (userId) => {
+        return await UserModel.deleteOne ({ id: userId });
     }
 };
 

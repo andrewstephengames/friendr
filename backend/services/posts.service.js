@@ -26,10 +26,8 @@ const postsService = {
         });
         console.log (`[INFO]: Updated post in post service`);
     },
-    deletePost: async (postObj) => {
-        await PostModel.deleteOne({ id: postObj.id }).then(() => {
-            console.log(`[INFO]: Post with id ${postObj.postId} has been removed`);
-        });
+    deletePost: async (postId) => {
+        return await PostModel.deleteOne({ id: postId });
     }
 };
 
