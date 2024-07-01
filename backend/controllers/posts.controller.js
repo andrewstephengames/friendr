@@ -30,6 +30,7 @@ const postsController = {
             res.status(400).send(`[ERROR]: Invalid post object`);
             return;
         }
+        postToBeCreated.date = new Date();
         console.log (`[INFO]: Create post ${postToBeCreated.id}`);
         postsService.createPost(postToBeCreated);
         res.status(201).send(`[INFO]: Post created successfully`);
@@ -45,6 +46,7 @@ const postsController = {
             res.status(400).send(`[ERROR]: Invalid post object`);
             return;
         }
+        postToBeModified.date = new Date();
         console.log (`[INFO]: Update post`);
         postsService.updatePost(postToBeModified);
         res.status(201).send(`[INFO]: Post updated successfully`);
