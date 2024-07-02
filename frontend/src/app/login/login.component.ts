@@ -26,7 +26,10 @@ export class LoginComponent {
         console.log(`[INFO]: User ${this.username} signed in`);
         this.router.navigate(['homepage']);
       },
-      error: (error) => {}
+      error: (error) => {
+        alert(`Username not found`);
+        console.log (`[ERROR]: Username not found: ${JSON.stringify(error)}`)
+      }
     });
   }
 }
