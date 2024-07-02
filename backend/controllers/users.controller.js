@@ -3,16 +3,16 @@ const usersService = require('../services/users.service');
 const usersController = {
     getUser: async (req, res) => {
         console.log (`[INFO]: Reached GET user controller`);
-        const userId = req.params.id;
-        console.log (`[INFO]: User: ${userId}`);
-        const userObj = await usersService.getUserById(userId);
+        const username = req.params.username;
+        console.log (`[INFO]: User: ${username}`);
+        const userObj = await usersService.getUserByUsername(username);
         console.log (`[INFO]: ${userObj}`);
         if (!userObj) {
-            res.status (404).send(`User with ID ${userId} not found`);
-        } else {
-            console.log (`[INFO]: ${userObj}`);
-            res.status(200).send(userObj);
+            res.status (404).send(`User ${username} not found`);
+            return;
         }
+        console.log (`[INFO]: ${userObj}`);
+        res.status(200).send(userObj);
     },
     createUser: async (req, res) => {
         console.log('[INFO]: Reached user creation controller');

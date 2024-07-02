@@ -23,15 +23,13 @@ const postsController = {
         console.log('[INFO]: Reached post creation controller');
         const postToBeCreated = req.body;
         if (!postToBeCreated ||
-            !postToBeCreated?.id ||
-            !postToBeCreated?.userId ||
+            !postToBeCreated?.author ||
             !postToBeCreated?.title ||
             !postToBeCreated?.description) {
             res.status(400).send(`[ERROR]: Invalid post object`);
             return;
         }
-        postToBeCreated.date = new Date();
-        console.log (`[INFO]: Create post ${postToBeCreated.id}`);
+        console.log (`[INFO]: Create post by ${postToBeCreated.author}`);
         postsService.createPost(postToBeCreated);
         res.status(201).send(`[INFO]: Post created successfully`);
     },
@@ -39,8 +37,7 @@ const postsController = {
         console.log(`[INFO]: Reached PATCH post controller`);
         const postToBeModified = req.body;
         if (!postToBeModified ||
-            !postToBeModified?.id ||
-            !postToBeModified?.userId ||
+            !postToBeModified?.author ||
             !postToBeModified?.title ||
             !postToBeModified?.description) {
             res.status(400).send(`[ERROR]: Invalid post object`);

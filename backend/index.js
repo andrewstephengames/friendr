@@ -1,4 +1,5 @@
 const express = require ('express');
+const cors = require ('cors');
 const mongoose = require('mongoose');
 const secrets = require('./secrets')
 const usersRouter = require ('./routers/users.router');
@@ -6,6 +7,7 @@ const postsRouter = require ('./routers/posts.router');
 
 const app = express();
 app.use (express.json());
+app.use (cors());
 
 const port = 3000;
 
