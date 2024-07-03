@@ -48,6 +48,24 @@ const postsController = {
         postsService.updatePost(postToBeModified);
         res.status(201).send(`[INFO]: Post updated successfully`);
     },
+    updatePostLikes: async (req, res) => {
+        console.log (`[INFO]: Reached PATCH post likes controller`);
+        const postId = req.params.id;
+        const username = req.body.username;
+        const postObj = await postsService.getPostById(postId);
+        if (!postObj) {
+            res.status(404).send('[ERROR]: Could not like post: post does not exist');
+            return;
+        }
+        const likes = postObj.likes;
+        if (likes.includes(username)) {
+            await postsService.removePostLikes(postId, username);
+        } else {
+            await postsService.addPostLikes(postId, username);
+        }
+        const updatedPostObj = await postsService.getPostById(postId);
+        res.status(200).send(updatedPostObj);
+    },
     deletePost: async (req, res) => {
         console.log('[INFO]: Reached post controller');
         console.log (`[INFO]: Delete post: ${req.body}`);

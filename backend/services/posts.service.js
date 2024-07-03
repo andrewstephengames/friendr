@@ -36,8 +36,11 @@ const postsService = {
         });
         console.log (`[INFO]: Updated post in post service`);
     },
-    deletePost: async (postId) => {
-        return await PostModel.deleteOne({ id: postId });
+    removePostLikes: async (postId, username) => {
+        await PostModel.updateOne({id: postId}, {$pull: {likes: username}})
+    },
+    addPostLikes: async (postId, username) => {
+        await PostModel.updateOne({id: postId}, {$push: {likes: username}})
     }
 };
 
