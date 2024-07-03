@@ -52,6 +52,10 @@ const postsController = {
         console.log (`[INFO]: Reached PATCH post likes controller`);
         const postId = req.params.id;
         const username = req.body.username;
+        if (!username) {
+            res.status(400).send('[ERROR]: Invalid username');
+            return;
+        }
         const postObj = await postsService.getPostById(postId);
         if (!postObj) {
             res.status(404).send('[ERROR]: Could not like post: post does not exist');
