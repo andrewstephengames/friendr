@@ -4,7 +4,7 @@
 	    <div>
 	        Sign in to your account
 	    </div>
-        <input class="login-fields" type="text" placeholder="Enter your username" [(ngModel)]="username" />
-        <button class="sign-in-btn" (click)="signIn()">Sign in</button>
+        <input class="login-fields" type="text" placeholder=" " [(ngModel)]="username" data_placeholder="Enter your username" required/>
+        <button class="sign-in-btn" (click)="signIn()" [disabled]="loading">Sign in</button>
     </div>
 </div>
