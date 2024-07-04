@@ -6,12 +6,20 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class AppService {
-
-  constructor(private http: HttpClient) {}
+  
+  private httpOptions: any;
+  
+  constructor(private http: HttpClient) {
+    this.httpOptions = {
+      observe: 'body', 
+      responseType: 'json',
+      headers: {'Access-Control-Allow-Origin':'*'}
+    }
+  }
   getUserByUsername(username: string): Observable<any> {
-    return this.http.get(`http://localhost:3000/users/${username}`);
+    return this.http.get(`http://localhost:3000/users/${username}`, this.httpOptions);
   }
   getPosts(): Observable<any> {
-    return this.http.get(`http://localhost:3000/posts`);
+    return this.http.get(`http://localhost:3000/posts`, this.httpOptions);
   }
 }
