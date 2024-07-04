@@ -14,6 +14,10 @@ const routes: Routes = [
     component: CreatePostComponent,
   },
   {
+    path: 'toPost',
+    component: CreatePostComponent,
+  },
+  {
     path: 'homepage',
     loadChildren: () =>
       import('./homepage/homepage.module').then((m) => m.HomepageModule),
