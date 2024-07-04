@@ -17,9 +17,9 @@ export class AppService {
     }
   }
   getUserByUsername(username: string): Observable<any> {
-    return this.http.get(`http://localhost:3000/users/${username}`, this.httpOptions);
+    return this.http.get(`http://127.0.0.1:3000/users/${username}`, this.httpOptions);
   }
   getPosts(): Observable<any> {
-    return this.http.get(`http://localhost:3000/posts`, this.httpOptions);
+    return this.http.get(`http://127.0.0.1:3000/posts`, this.httpOptions);
   }
 }
