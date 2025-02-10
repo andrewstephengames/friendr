@@ -30,7 +30,7 @@ export class LoginComponent {
 				localStorage.setItem ('firstName', response?.firstName);
 				localStorage.setItem ('lastName', response?.lastName);
 				localStorage.setItem ('username', this.username);
-        console.log(`[INFO]: User ${this.username} signed in`);
+        console.log(response);
         this.router.navigate(['homepage']);
       },
       error: (error) => {

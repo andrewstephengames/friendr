@@ -12,7 +12,7 @@ app.use (cors());
 const port = 3000;
 
 app.get('/', (req, res) => {
-  res.send('Hello');
+  res.send('Hello, this is the landing page for the backend of the website.');
 });
 
 app.use('/users', usersRouter);
@@ -20,7 +20,7 @@ app.use('/posts', postsRouter);
 
 app.listen(port, () => {
   console.log(`[INFO]: Server is running on port ${port}`);
-  mongoose.connect(`mongodb+srv://andrew:${secrets}@cluster0.4xlt9av.mongodb.net/friendr?retryWrites=true&w=majority&appName=Cluster0`).then(() => {
+  mongoose.connect(`${secrets}`).then(() => {
     console.log ('[INFO]: Connected to MongoDB');
   }).catch ((err) => {
     console.log (`[ERROR]: Unable to connect to the database: ${err}`)
